@@ -33,3 +33,13 @@ response = client.chat.completions.create(
     ) 
 print(response)
 
+response_message = response.choices[0].message 
+available_functions = { 
+  "get_current_weather": get_current_weather, 
+} 
+function_name = response_message.function_call.name 
+function_to_call = available_functions[function_name] 
+function_args = json.loads(response_message.function_call.arguments) 
+function_response = function_to_call(location = function_args.get("location"), unit = function_args.get("unit"), ) 
+print(function_response)
+
