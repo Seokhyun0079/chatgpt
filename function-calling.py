@@ -31,6 +31,7 @@ response = client.chat.completions.create(
     messages = messages, 
     functions = functions 
     ) 
+print("response")
 print(response)
 
 response_message = response.choices[0].message 
@@ -41,5 +42,15 @@ function_name = response_message.function_call.name
 function_to_call = available_functions[function_name] 
 function_args = json.loads(response_message.function_call.arguments) 
 function_response = function_to_call(location = function_args.get("location"), unit = function_args.get("unit"), ) 
+
+print("function_response")
 print(function_response)
+
+second_response = client.chat.completions.create(
+    model="gpt-4o-mini", 
+    messages=messages, 
+) 
+print("second_response")
+print(second_response)
+
 
