@@ -4,6 +4,7 @@ from langchain.prompts import PromptTemplate
 from openai import OpenAI
 from langchain.schema import HumanMessage
 from langchain_openai import ChatOpenAI
+
 client = OpenAI()
 
 class Recipe( BaseModel): 
